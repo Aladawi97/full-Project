@@ -5,6 +5,7 @@ import {
   IconButton,
   ListItemIcon,
   ListItemText,
+  Stack,
   Typography,
   useMediaQuery,
   useTheme,
@@ -139,13 +140,22 @@ export default function Header3() {
         </Menu>
       </Box>
 
-     <Links />
+      {useMediaQuery("(min-width:1201px)") && (
+        <Stack gap={3} direction={"row"} alignItems={"center"}>
+          <Links title={"Home"} />
+          <Links title={"Mega Menu"} />
+          <Links title={"Full Screen Menu"} />
+          <Links title={"Pages"} />
+          <Links title={"User Account"} />
+          <Links title={"Vendor Account"} />
+        </Stack>
+      )}
 
-     {useMediaQuery('(max-width:1000px)') && (
-       <IconButton onClick={toggleDrawer("top", true)}>
-       <MenuIcon />
-     </IconButton>
-     )}
+      {useMediaQuery("(max-width:1200px)") && (
+        <IconButton onClick={toggleDrawer("top", true)}>
+          <MenuIcon />
+        </IconButton>
+      )}
       <Drawer
         anchor={"top"}
         open={state["top"]}
@@ -167,7 +177,12 @@ export default function Header3() {
           }}
         >
           <IconButton
-            sx={{ "&:hover" :{rotate:"360deg" ,transition:"0.3s" , color:"red"}, position: "absolute", top: "0", right: 10 }}
+            sx={{
+              "&:hover": { rotate: "360deg", transition: "0.3s", color: "red" },
+              position: "absolute",
+              top: "0",
+              right: 10,
+            }}
             onClick={toggleDrawer("top", false)}
           >
             <Close />

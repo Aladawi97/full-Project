@@ -12,7 +12,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import List from "@mui/material/List";
@@ -41,10 +40,10 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  minwidth: "300px",
+  width: "260px",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: "auto",
+    width: "330px",
   },
 }));
 
