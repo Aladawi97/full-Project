@@ -2,6 +2,8 @@ import {
   Box,
   Button,
   Container,
+  Dialog,
+  IconButton,
   Rating,
   Stack,
   Typography,
@@ -15,6 +17,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import { Close } from "@mui/icons-material";
+import ProductDetaile from "./ProductDetaile";
 export default function Main() {
   const [alignment, setAlignment] = React.useState("left");
 
@@ -23,8 +27,20 @@ export default function Main() {
   };
 
   const theme = useTheme();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   return (
-    <Container sx={{ mt: 9 }}>
+    <Container sx={{ py: 9 }}>
       <Stack
         direction={"row"}
         alignItems={"center"}
@@ -85,7 +101,16 @@ export default function Main() {
       <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"space-between"}>
         {["aaa", "bbb", "ccc" , "ddd" , "ada" , "glv" ].map((item) => {
           return (
-            <Card key={item} sx={{ maxWidth: 333, mt: 6 }}>
+            <Card key={item} 
+            sx={{ 
+              maxWidth: 333,
+               mt: 6 ,
+                ":hover .MuiCardMedia-root" :{
+                  scale : "1.1",
+                  transition:"0.35s",
+                  rotate:"0.8deg"
+
+            }}}>
               <CardMedia
                 component="img"
                 alt="green iguana"
@@ -114,10 +139,11 @@ export default function Main() {
               </CardContent>
 
               <CardActions sx={{ justifyContent: "space-between" }}>
-                <Button size="large" sx={{ textTransform: "capitalize" }}>
+                <Button onClick={handleClickOpen} size="large" sx={{ textTransform: "capitalize" }}>
                   <AddShoppingCartOutlinedIcon
                     sx={{ mr: 1 }}
                     fontSize="small"
+                    
                   />
                   Add To Cart
                 </Button>
@@ -176,6 +202,36 @@ export default function Main() {
           </CardActions>
         </Card> */}
       </Stack>
+
+
+
+
+
+      <Dialog 
+      sx={{
+        ".MuiPaper-root" : {minWidth:{xs :"100%" , md : 800}}
+      }}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+       <IconButton
+            sx={{
+              "&:hover": { rotate: "360deg", transition: "0.3s", color: "red" },
+              position: "absolute",
+              top: "0",
+              right: 10,
+            }}
+            onClick={handleClose}
+          >
+            <Close />
+          </IconButton>
+         <Stack >
+          <ProductDetaile />
+         </Stack>
+
+      </Dialog>
     </Container>
   );
 }
